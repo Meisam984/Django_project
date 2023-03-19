@@ -6,4 +6,4 @@ class Car(models.Model):
     year = models.IntegerField()
 
     def __str__(self) -> str:
-        return f"{self.brand}, manufactured in {self.year}"
+        return f"{self.brand}, model {self.year}"
