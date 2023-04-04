@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView, CreateView, ListView
+from django.views.generic import TemplateView, FormView, CreateView, ListView, DetailView
 from classroom.forms import ContactForm
 from classroom.models import Teacher
 
@@ -24,6 +24,10 @@ class TeacherListView(ListView):
     # model_list.html
     context_object_name = 'teacher_list'
     queryset = Teacher.objects.order_by('first_name')
+
+class TeacherDetailView(DetailView):
+    model = Teacher
+    #model_detail.html
     
 
 class ContactFormView(FormView):
