@@ -21,5 +21,6 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("cars/", include('cars.urls')),
+    path('office/', include('office.urls')),
     path("", RedirectView.as_view(url='cars/rental_review'))
 ]
