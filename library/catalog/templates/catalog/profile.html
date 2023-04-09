@@ -1,0 +1,7 @@
+<h1>Welcome to your profile: {{user}}</h1>
+<h2>Here are the books checked out:</h2>
+
+{% for book in bookinstance_list  %}
+  <p>{{book}}</p>
+{% endfor %}
+

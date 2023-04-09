@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, ListView
 from catalog.models import Book, BookInstance
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -36,5 +36,17 @@ class SignupView(CreateView):
     form_class = UserCreationForm
     template_name = 'catalog/signup.html'
     success_url = reverse_lazy('login')
+
+class CheckedOutBooksByUser(LoginRequiredMixin, ListView):
+    model = BookInstance
+    template_name = 'catalog/profile.html'
+    paginate_by = 5
+    
+    def get_queryset(self):
+        return BookInstance.objects.filter(borrower=self.request.user)
+    
+    def get_context_data(self):
+        context = {'user': self.request.user}
+        return context
 
 
